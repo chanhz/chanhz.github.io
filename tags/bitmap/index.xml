@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BitMap on Gonix&#39;s Blog</title>
+    <link>https:chanhz.github.io/tags/bitmap/</link>
+    <description>Recent content in BitMap on Gonix&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 29 May 2019 15:26:18 +0800</lastBuildDate>
+    
+	<atom:link href="https:chanhz.github.io/tags/bitmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang封装BitMap</title>
+      <link>https:chanhz.github.io/post/post/bitmap/</link>
+      <pubDate>Wed, 29 May 2019 15:26:18 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/post/post/bitmap/</guid>
+      <description>BitMap用位来实现集合元素的查找、去重，在处理海量数据时拥有良好的空间复杂度。 场景 from《编程珠玑》： 给一台普通PC，2G内存，要求处</description>
+    </item>
+    
+  </channel>
+</rss>

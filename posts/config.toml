@@ -1,0 +1,4 @@
+baseURL = "http://chanhz.github.io"
+languageCode = "en-us"
+title = "Gonix's Blog"
+theme = "ananke"

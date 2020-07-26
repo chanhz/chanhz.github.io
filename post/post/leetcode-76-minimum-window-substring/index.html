@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串 - Gonix&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="gonix" /><meta name="description" content="审题 给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+示例：
+1 2  输入: S = &amp;#34;ADOBECODEBANC&amp;#34;, T = &amp;#34;ABC&amp;#34; 输出: &amp;#34;BANC&amp;#34;   说明：
+如果 S 中不存这样的子串，则返回空字符串 &amp;ldquo;&amp;quot;。 如果 S 中存在这样的子串，我们保证它是唯一的答案。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https:chanhz.github.io/post/post/leetcode-76-minimum-window-substring/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串" />
+<meta property="og:description" content="审题
+给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+示例：
+
+
+1
+2
+
+
+输入: S = &#34;ADOBECODEBANC&#34;, T = &#34;ABC&#34;
+输出: &#34;BANC&#34;
+
+
+说明：
+如果 S 中不存这样的子串，则返回空字符串 &ldquo;&quot;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https:chanhz.github.io/post/post/leetcode-76-minimum-window-substring/" />
+<meta property="article:published_time" content="2019-03-14T11:52:06+08:00" />
+<meta property="article:modified_time" content="2019-03-14T11:52:06+08:00" />
+<meta itemprop="name" content="题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串">
+<meta itemprop="description" content="审题
+给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+示例：
+
+
+1
+2
+
+
+输入: S = &#34;ADOBECODEBANC&#34;, T = &#34;ABC&#34;
+输出: &#34;BANC&#34;
+
+
+说明：
+如果 S 中不存这样的子串，则返回空字符串 &ldquo;&quot;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。">
+<meta itemprop="datePublished" content="2019-03-14T11:52:06+08:00" />
+<meta itemprop="dateModified" content="2019-03-14T11:52:06+08:00" />
+<meta itemprop="wordCount" content="1392">
+
+
+
+<meta itemprop="keywords" content="leetcode," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串"/>
+<meta name="twitter:description" content="审题
+给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+示例：
+
+
+1
+2
+
+
+输入: S = &#34;ADOBECODEBANC&#34;, T = &#34;ABC&#34;
+输出: &#34;BANC&#34;
+
+
+说明：
+如果 S 中不存这样的子串，则返回空字符串 &ldquo;&quot;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Gonix&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/post/about/">
+        <li class="mobile-menu-item">About me</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Gonix&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/about/">About me</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-14 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#审题">审题</a></li>
+        <li><a href="#思路">思路</a></li>
+        <li><a href="#实现">实现</a></li>
+        <li><a href="#评估">评估</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="审题">审题</h3>
+<p>给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">输入: S = &#34;ADOBECODEBANC&#34;, T = &#34;ABC&#34;
+输出: &#34;BANC&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>说明：</p>
+<p>如果 S 中不存这样的子串，则返回空字符串 &ldquo;&quot;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。</p>
+<h3 id="思路">思路</h3>
+<h4 id="tips">Tips</h4>
+<p>题目下方给出了两个提示：</p>
+<p>提示一：</p>
+<p>Use two pointers to create a window of letters in S, which would have all the characters from T.</p>
+<p>提示二：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Since you have to find the minimum window in S which has all the characters from T, 
+you need to expand and contract the window using the two pointers and 
+keep checking the window for all the characters. This approach is also called Sliding Window Approach. 
+
+L ------------------------ R , Suppose this is the window that contains all characters of T 
+                          
+        L----------------- R , 
+this is the contracted window. We found a smaller window that still contains all the characters in T
+
+When the window is no longer valid, start expanding again using the right pointer. 
+
+</code></pre></td></tr></table>
+</div>
+</div><p>算法已经表述清楚了，解决该题的核心是使用两个指针，维护一个动态的“滑动窗口”，从前往后搜索，使得处于该滑动窗口的字符串包含所有 T 中的字符串， 找到符合的子串后，尝试将左边的指针往右移动，在满足题设条件的情况下，使得滑动窗口尽可能小</p>
+<p>为了方便描述，我们定义以下数据结构：</p>
+<ul>
+<li>sLen： 字符串 S 的长度</li>
+<li>tLen： 字符串 T 的长度</li>
+<li>slow：左指针，滑动窗口的左边界</li>
+<li>fast：右指针，滑动窗口的右边界</li>
+<li>tMap：数组哈希表，保存 T 中字符出现的频次</li>
+<li>window： 数组哈希表，保存滑动窗口里各个字符的频次</li>
+<li>letterCnt： 整数，记录滑动窗口内包含的、满足条件的字符的个数，当 letterCnt 等于 T 的长度时，说明我们至少已经找到了一个包含 T 中所有字符的解</li>
+<li>minLen：整数，滑动窗口的长度</li>
+<li>res：字符串，算法返回值</li>
+</ul>
+<p>1.维护两个哈希表，哈希表 tMap 记录 T 中每个字符出现的次数， 哈希表 window 记录滑块间每个 map 字符出现的次数;</p>
+<p>2.遍历字符串 S ，使用两个指针 slow, fast 数组下标记录滑块的左右边界，该滑块滑动时遵循规则如下：</p>
+<p>3.使用 letterCnt 记录 window 找到的 T 中的字符出现的次数，当 letterCnt &gt;= len(T) 时，说明已经找到了符合条件的子串；(注意坑：字符数量也是必要条件)</p>
+<p>4.但该子串可能不是最小的，因此找到子串后，需要尝试将slow右移：如 slow 指向的是目标字符，且在 window 表的值大于 map 中对应的字符的频次时，slow 右移；如非目标字符，继续右移，因为这并不会改变window中满足字符的频次；</p>
+<p>5.更新 res 和 min Len。</p>
+<p>6.fast右移，寻找更短的滑块。重复 3 ～ 5，直到 fast 到达 S 末端。</p>
+<h4 id="伪代码">伪代码</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sLen &lt;- len(S)
+tLen &lt;- len(T)
+tMap, window := [128]int{}
+for _, c :=  range T {
+	tMap[c]++
+}
+slow, fast &lt;- 0
+// 遍历字符串 S
+for fast, c :=  range S {
+	if c in T {
+		if count(c) in window &lt; count(c) in tMap {
+			letterCnt++
+		}
+		window[c] ++ 
+	}
+	if letterCnt == tLen {
+		// try to shorten the window
+		
+		ch &lt;- S[slow]
+		for ch not in T or count (ch) in window &gt; count(ch) in tMap {
+			if ch in tMap {
+				window[ch]--
+			}
+			slow++
+			ch &lt;- S[slow]
+		}
+		len &lt;- 	fast - slow
+		if minLen &gt; len {
+			update minLen and res
+		}
+	} 
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="实现">实现</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">minWindow</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">t</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">s</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="o">||</span> <span class="nx">t</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="s">&#34;&#34;</span>
+	<span class="p">}</span>
+	<span class="nx">tMap</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">128</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+	<span class="nx">window</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">128</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+	<span class="nx">letterCnt</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="nx">slow</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="nx">tlen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+	<span class="nx">minLen</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+	<span class="nx">res</span> <span class="o">:=</span> <span class="s">&#34;&#34;</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">t</span> <span class="p">{</span>
+		<span class="nx">tMap</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span><span class="o">++</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">fast</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">tMap</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span> <span class="c1">// 遇到一个目标字符，
+</span><span class="c1"></span>			<span class="k">if</span> <span class="nx">window</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">tMap</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="p">{</span> <span class="c1">// 未收集够
+</span><span class="c1"></span>				<span class="nx">letterCnt</span><span class="o">++</span>
+			<span class="p">}</span>
+			<span class="nx">window</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">letterCnt</span> <span class="o">==</span> <span class="nx">tlen</span> <span class="p">{</span> <span class="c1">// window 已经收集够了目标字符
+</span><span class="c1"></span>			<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">slow</span><span class="p">])</span>
+			<span class="k">for</span> <span class="nx">tMap</span><span class="p">[</span><span class="nx">ch</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">tMap</span><span class="p">[</span><span class="nx">ch</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">window</span><span class="p">[</span><span class="nx">ch</span><span class="p">]</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="nx">window</span><span class="p">[</span><span class="nx">ch</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+					<span class="nx">window</span><span class="p">[</span><span class="nx">ch</span><span class="p">]</span><span class="o">--</span> <span class="c1">// 剪掉目标字符，因此该字符频次减1
+</span><span class="c1"></span>				<span class="p">}</span>
+				<span class="nx">slow</span><span class="o">++</span>
+				<span class="nx">ch</span> <span class="p">=</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">slow</span><span class="p">])</span>
+			<span class="p">}</span> <span class="c1">// 不合法，结束本轮搜索
+</span><span class="c1"></span>			<span class="nx">l</span> <span class="o">:=</span> <span class="nx">fast</span> <span class="o">-</span> <span class="nx">slow</span>
+			<span class="k">if</span> <span class="nx">minLen</span> <span class="p">&gt;</span> <span class="nx">l</span> <span class="p">{</span>
+				<span class="nx">minLen</span> <span class="p">=</span> <span class="nx">l</span>
+				<span class="nx">res</span> <span class="p">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">slow</span> <span class="p">:</span> <span class="nx">slow</span><span class="o">+</span><span class="nx">l</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="评估">评估</h3>
+<p>这道题通过率没超过30%，难度系数被定义为困难，实际应该是中等难度的题目。</p>
+<p>估计是题目描述不够清晰，没说清楚目标子串不仅要字符种类齐全，并且数量也不能少。很多同学认为，只要找到目标字符串的所有字符即是合理解，因此通过率很低。</p>
+<p><a href="https://leetcode-cn.com/problemset/all/?topicSlugs=two-pointers">更多双指针题目</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">gonix</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-03-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/leetcode/">leetcode</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/post/install-mysql-on-centos-offline/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">CentOS离线安装MySQL</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/post/you-need-to-know-about-mysql/">
+            <span class="next-text nav-default">MySQL必知必会note</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https:chanhz.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">gonix</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

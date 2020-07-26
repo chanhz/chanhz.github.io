@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串 | Gonix&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.55.5" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串" />
+<meta property="og:description" content="审题
+
+给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+
+示例：
+
+输入: S = &quot;ADOBECODEBANC&quot;, T = &quot;ABC&quot;
+输出: &quot;BANC&quot;
+
+
+说明：
+
+如果 S 中不存这样的子串，则返回空字符串 &ldquo;&ldquo;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://chanhz.github.io/posts/post/leetcode-76-minimum-window-substring/" />
+<meta property="article:published_time" content="2019-03-14T11:52:06&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-14T11:52:06&#43;08:00"/>
+
+<meta itemprop="name" content="题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串">
+<meta itemprop="description" content="审题
+
+给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+
+示例：
+
+输入: S = &quot;ADOBECODEBANC&quot;, T = &quot;ABC&quot;
+输出: &quot;BANC&quot;
+
+
+说明：
+
+如果 S 中不存这样的子串，则返回空字符串 &ldquo;&ldquo;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。">
+
+
+<meta itemprop="datePublished" content="2019-03-14T11:52:06&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-14T11:52:06&#43;08:00" />
+<meta itemprop="wordCount" content="477">
+
+
+
+<meta itemprop="keywords" content="leetcode," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串"/>
+<meta name="twitter:description" content="审题
+
+给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+
+示例：
+
+输入: S = &quot;ADOBECODEBANC&quot;, T = &quot;ABC&quot;
+输出: &quot;BANC&quot;
+
+
+说明：
+
+如果 S 中不存这样的子串，则返回空字符串 &ldquo;&ldquo;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Gonix&#39;s Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/about/" title="关于 page">
+              关于
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=http://chanhz.github.io/posts/post/leetcode-76-minimum-window-substring/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=http://chanhz.github.io/posts/post/leetcode-76-minimum-window-substring/&amp;text=%e9%a2%98%e8%a7%a3%20%7c%20Leetcode%2076%20-%20Minimum%20Window%20Substring%20%e6%9c%80%e5%b0%8f%e8%a6%86%e7%9b%96%e5%ad%90%e4%b8%b2" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://chanhz.github.io/posts/post/leetcode-76-minimum-window-substring/&amp;title=%e9%a2%98%e8%a7%a3%20%7c%20Leetcode%2076%20-%20Minimum%20Window%20Substring%20%e6%9c%80%e5%b0%8f%e8%a6%86%e7%9b%96%e5%ad%90%e4%b8%b2" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-03-14T11:52:06+08:00">March 14, 2019</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h3 id="审题">审题</h3>
+
+<p>给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。</p>
+
+<p>示例：</p>
+
+<pre><code>输入: S = &quot;ADOBECODEBANC&quot;, T = &quot;ABC&quot;
+输出: &quot;BANC&quot;
+</code></pre>
+
+<p>说明：</p>
+
+<p>如果 S 中不存这样的子串，则返回空字符串 &ldquo;&ldquo;。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。</p>
+
+<h3 id="思路">思路</h3>
+
+<h4 id="tips">Tips</h4>
+
+<p>题目下方给出了两个提示：</p>
+
+<p>提示一：</p>
+
+<p>Use two pointers to create a window of letters in S, which would have all the characters from T.</p>
+
+<p>提示二：</p>
+
+<pre><code>Since you have to find the minimum window in S which has all the characters from T, 
+you need to expand and contract the window using the two pointers and 
+keep checking the window for all the characters. This approach is also called Sliding Window Approach. 
+
+L ------------------------ R , Suppose this is the window that contains all characters of T 
+                          
+        L----------------- R , 
+this is the contracted window. We found a smaller window that still contains all the characters in T
+
+When the window is no longer valid, start expanding again using the right pointer. 
+
+</code></pre>
+
+<p>算法已经表述清楚了，解决该题的核心是使用两个指针，维护一个动态的“滑动窗口”，从前往后搜索，使得处于该滑动窗口的字符串包含所有 T 中的字符串， 找到符合的子串后，尝试将左边的指针往右移动，在满足题设条件的情况下，使得滑动窗口尽可能小</p>
+
+<p>为了方便描述，我们定义以下数据结构：</p>
+
+<ul>
+<li>sLen： 字符串 S 的长度</li>
+<li>tLen： 字符串 T 的长度</li>
+<li>slow：左指针，滑动窗口的左边界</li>
+<li>fast：右指针，滑动窗口的右边界</li>
+<li>tMap：数组哈希表，保存 T 中字符出现的频次</li>
+<li>window： 数组哈希表，保存滑动窗口里各个字符的频次</li>
+<li>letterCnt： 整数，记录滑动窗口内包含的、满足条件的字符的个数，当 letterCnt 等于 T 的长度时，说明我们至少已经找到了一个包含 T 中所有字符的解</li>
+<li>minLen：整数，滑动窗口的长度</li>
+<li>res：字符串，算法返回值</li>
+</ul>
+
+<p>1.维护两个哈希表，哈希表 tMap 记录 T 中每个字符出现的次数， 哈希表 window 记录滑块间每个 map 字符出现的次数;</p>
+
+<p>2.遍历字符串 S ，使用两个指针 slow, fast 数组下标记录滑块的左右边界，该滑块滑动时遵循规则如下：</p>
+
+<p>3.使用 letterCnt 记录 window 找到的 T 中的字符出现的次数，当 letterCnt &gt;= len(T) 时，说明已经找到了符合条件的子串；(注意坑：字符数量也是必要条件)</p>
+
+<p>4.但该子串可能不是最小的，因此找到子串后，需要尝试将slow右移：如 slow 指向的是目标字符，且在 window 表的值大于 map 中对应的字符的频次时，slow 右移；如非目标字符，继续右移，因为这并不会改变window中满足字符的频次；</p>
+
+<p>5.更新 res 和 min Len。</p>
+
+<p>6.fast右移，寻找更短的滑块。重复 3 ～ 5，直到 fast 到达 S 末端。</p>
+
+<h4 id="伪代码">伪代码</h4>
+
+<pre><code>sLen &lt;- len(S)
+tLen &lt;- len(T)
+tMap, window := [128]int{}
+for _, c :=  range T {
+	tMap[c]++
+}
+slow, fast &lt;- 0
+// 遍历字符串 S
+for fast, c :=  range S {
+	if c in T {
+		if count(c) in window &lt; count(c) in tMap {
+			letterCnt++
+		}
+		window[c] ++ 
+	}
+	if letterCnt == tLen {
+		// try to shorten the window
+		
+		ch &lt;- S[slow]
+		for ch not in T or count (ch) in window &gt; count(ch) in tMap {
+			if ch in tMap {
+				window[ch]--
+			}
+			slow++
+			ch &lt;- S[slow]
+		}
+		len &lt;- 	fast - slow
+		if minLen &gt; len {
+			update minLen and res
+		}
+	} 
+}
+</code></pre>
+
+<h3 id="实现">实现</h3>
+
+<pre><code class="language-golang">func minWindow(s string, t string) string {
+	if s == &quot;&quot; || t == &quot;&quot; {
+		return &quot;&quot;
+	}
+	tMap := [128]int{0}
+	window := [128]int{0}
+	letterCnt := 0
+	slow := 0
+	tlen := len(t)
+	minLen := len(s) + 1
+	res := &quot;&quot;
+	for _, c := range t {
+		tMap[c]++
+	}
+	for fast, c := range s {
+		if tMap[c] != 0 { // 遇到一个目标字符，
+			if window[c] &lt; tMap[c] { // 未收集够
+				letterCnt++
+			}
+			window[c]++
+		}
+		if letterCnt == tlen { // window 已经收集够了目标字符
+			ch := rune(s[slow])
+			for tMap[ch] == 0 || tMap[ch] &lt; window[ch] {
+				if window[ch] != 0 {
+					window[ch]-- // 剪掉目标字符，因此该字符频次减1
+				}
+				slow++
+				ch = rune(s[slow])
+			} // 不合法，结束本轮搜索
+			l := fast - slow
+			if minLen &gt; l {
+				minLen = l
+				res = s[slow : slow+l+1]
+			}
+		}
+	}
+	return res
+}
+</code></pre>
+
+<h3 id="评估">评估</h3>
+
+<p>这道题通过率没超过30%，难度系数被定义为困难，实际应该是中等难度的题目。</p>
+
+<p>估计是题目描述不够清晰，没说清楚目标子串不仅要字符种类齐全，并且数量也不能少。很多同学认为，只要找到目标字符串的所有字符即是合理解，因此通过率很低。</p>
+
+<p><a href="https://leetcode-cn.com/problemset/all/?topicSlugs=two-pointers">更多双指针题目</a></p><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/leetcode" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">leetcode</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://chanhz.github.io" >
+    &copy;  Gonix's Blog 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

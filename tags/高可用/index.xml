@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>高可用 on Gonix&#39;s Blog</title>
+    <link>https:chanhz.github.io/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
+    <description>Recent content in 高可用 on Gonix&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 05 Jul 2020 21:29:01 +0800</lastBuildDate>
+    
+	<atom:link href="https:chanhz.github.io/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>k8s高可用方案探索</title>
+      <link>https:chanhz.github.io/post/post/k8s%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E6%8E%A2%E7%B4%A2/</link>
+      <pubDate>Sun, 05 Jul 2020 21:29:01 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/post/post/k8s%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88%E6%8E%A2%E7%B4%A2/</guid>
+      <description>关键字： 高可用、HAProxy、Nginx、并发连接数、apiserver 背景 在对某离线集群进行近百台机器扩容变更过程中，在节点加入集群后，</description>
+    </item>
+    
+  </channel>
+</rss>

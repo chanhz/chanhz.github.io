@@ -1,14 +1,132 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Gonix&#39;s Blog</title>
-    <link>http://chanhz.github.io/tags/</link>
+    <link>https:chanhz.github.io/tags/</link>
     <description>Recent content in Tags on Gonix&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <lastBuildDate>Sun, 05 Jul 2020 21:29:01 +0800</lastBuildDate>
     
-	<atom:link href="http://chanhz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:chanhz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HAProxy</title>
+      <link>https:chanhz.github.io/tags/haproxy/</link>
+      <pubDate>Sun, 05 Jul 2020 21:29:01 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/haproxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k8s</title>
+      <link>https:chanhz.github.io/tags/k8s/</link>
+      <pubDate>Sun, 05 Jul 2020 21:29:01 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>架构</title>
+      <link>https:chanhz.github.io/tags/%E6%9E%B6%E6%9E%84/</link>
+      <pubDate>Sun, 05 Jul 2020 21:29:01 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/%E6%9E%B6%E6%9E%84/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>高可用</title>
+      <link>https:chanhz.github.io/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/</link>
+      <pubDate>Sun, 05 Jul 2020 21:29:01 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BitMap</title>
+      <link>https:chanhz.github.io/tags/bitmap/</link>
+      <pubDate>Wed, 29 May 2019 15:26:18 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/bitmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>海量数据</title>
+      <link>https:chanhz.github.io/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Wed, 29 May 2019 15:26:18 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins</title>
+      <link>https:chanhz.github.io/tags/jenkins/</link>
+      <pubDate>Wed, 15 May 2019 17:14:03 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>他山之石</title>
+      <link>https:chanhz.github.io/tags/%E4%BB%96%E5%B1%B1%E4%B9%8B%E7%9F%B3/</link>
+      <pubDate>Wed, 15 May 2019 09:14:32 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/%E4%BB%96%E5%B1%B1%E4%B9%8B%E7%9F%B3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https:chanhz.github.io/tags/kubernetes/</link>
+      <pubDate>Tue, 14 May 2019 10:02:34 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https:chanhz.github.io/tags/golang/</link>
+      <pubDate>Mon, 13 May 2019 09:25:37 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>并发控制</title>
+      <link>https:chanhz.github.io/tags/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Mon, 13 May 2019 09:25:37 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https:chanhz.github.io/tags/mysql/</link>
+      <pubDate>Fri, 10 May 2019 13:55:21 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>leetcode</title>
+      <link>https:chanhz.github.io/tags/leetcode/</link>
+      <pubDate>Thu, 14 Mar 2019 11:52:06 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/tags/leetcode/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

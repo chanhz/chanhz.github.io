@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MySQL必知必会note - Gonix&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="gonix" /><meta name="description" content="TRICK 1 LIMIT X OFFSET Y limit 是限制 SQL 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 OFFSET (游标),例如：
+1  limit 4 offset 3 --意味从行3取4行   TRICK 2 使用限制表名 在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列
+1  select b.c from a.b   TRICK 3 ORDER BY 应该养成排序的好习惯，order by 后加列名，检索出的数据按字典序排序。 可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序 可以使用 desc 关键字来指定从 Z-A 的排序
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https:chanhz.github.io/post/post/you-need-to-know-about-mysql/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MySQL必知必会note" />
+<meta property="og:description" content="TRICK 1 LIMIT X OFFSET Y
+limit 是限制 SQL 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 OFFSET (游标),例如：
+
+
+1
+
+
+limit 4 offset 3 --意味从行3取4行
+
+
+TRICK 2 使用限制表名
+在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列
+
+
+1
+
+
+select b.c from a.b
+
+
+TRICK 3 ORDER BY
+应该养成排序的好习惯，order by 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 desc 关键字来指定从 Z-A 的排序" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https:chanhz.github.io/post/post/you-need-to-know-about-mysql/" />
+<meta property="article:published_time" content="2019-03-05T00:02:47+08:00" />
+<meta property="article:modified_time" content="2019-03-05T00:02:47+08:00" />
+<meta itemprop="name" content="MySQL必知必会note">
+<meta itemprop="description" content="TRICK 1 LIMIT X OFFSET Y
+limit 是限制 SQL 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 OFFSET (游标),例如：
+
+
+1
+
+
+limit 4 offset 3 --意味从行3取4行
+
+
+TRICK 2 使用限制表名
+在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列
+
+
+1
+
+
+select b.c from a.b
+
+
+TRICK 3 ORDER BY
+应该养成排序的好习惯，order by 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 desc 关键字来指定从 Z-A 的排序">
+<meta itemprop="datePublished" content="2019-03-05T00:02:47+08:00" />
+<meta itemprop="dateModified" content="2019-03-05T00:02:47+08:00" />
+<meta itemprop="wordCount" content="2570">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL必知必会note"/>
+<meta name="twitter:description" content="TRICK 1 LIMIT X OFFSET Y
+limit 是限制 SQL 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 OFFSET (游标),例如：
+
+
+1
+
+
+limit 4 offset 3 --意味从行3取4行
+
+
+TRICK 2 使用限制表名
+在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列
+
+
+1
+
+
+select b.c from a.b
+
+
+TRICK 3 ORDER BY
+应该养成排序的好习惯，order by 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 desc 关键字来指定从 Z-A 的排序"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Gonix&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/post/about/">
+        <li class="mobile-menu-item">About me</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Gonix&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/about/">About me</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MySQL必知必会note</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-05 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#trick-1-limit-x-offset-y">TRICK 1 LIMIT X OFFSET Y</a></li>
+        <li><a href="#trick-2-使用限制表名">TRICK 2 使用限制表名</a></li>
+        <li><a href="#trick-3-order-by">TRICK 3 ORDER BY</a></li>
+        <li><a href="#trick-4-检索最值">TRICK 4 检索最值</a></li>
+        <li><a href="#trick-5-正则表达式">TRICK 5 正则表达式</a></li>
+        <li><a href="#trick-6-创建计算字段">TRICK 6 创建计算字段</a></li>
+        <li><a href="#trick-7-使用数据处理函数">TRICK 7 使用数据处理函数</a></li>
+        <li><a href="#trick-8-聚集函数汇总数据">TRICK 8 聚集函数汇总数据</a></li>
+        <li><a href="#trick-9-使用分组">TRICK 9 使用分组</a></li>
+        <li><a href="#trick-10-使用子查询">TRICK 10 使用子查询</a></li>
+        <li><a href="#trick-11-使用联结表">TRICK 11 使用联结表</a></li>
+        <li><a href="#trick-12-高级联结">TRICK 12 高级联结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="trick-1-limit-x-offset-y">TRICK 1 LIMIT X OFFSET Y</h3>
+<p><code>limit</code> 是限制 <code>SQL</code> 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 <code>OFFSET</code> (游标),例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">limit</span> <span class="mi">4</span> <span class="k">offset</span> <span class="mi">3</span> <span class="c1">--意味从行3取4行
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="trick-2-使用限制表名">TRICK 2 使用限制表名</h3>
+<p>在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">b</span><span class="p">.</span><span class="k">c</span> <span class="k">from</span> <span class="n">a</span><span class="p">.</span><span class="n">b</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="trick-3-order-by">TRICK 3 ORDER BY</h3>
+<p>应该养成排序的好习惯，<code>order by</code> 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 <code>desc</code> 关键字来指定从 Z-A 的排序</p>
+<h3 id="trick-4-检索最值">TRICK 4 检索最值</h3>
+<p>使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">order</span> <span class="k">by</span> <span class="n">x</span> <span class="k">limit</span> <span class="mi">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以检索出最大和最小值</p>
+<h3 id="trick-5-正则表达式">TRICK 5 正则表达式</h3>
+<p>REGXP 比 like 模糊查询要强大得多，REGXP 使用 <code>^$</code> 作为匹配字串得首尾占位符，.作为任意通配符， <code>\</code> 作为转义字符（REG和MySQL各一个）
+匹配多个实例得方法是使用重复元字符，它们有：<code>*/+/?/{n}/{n,}{n,m}</code></p>
+<h3 id="trick-6-创建计算字段">TRICK 6 创建计算字段</h3>
+<p>计算字段是指，通过SQL得一些格式化函数，将多个字段拼接或计算成一个业务所需要的字段。
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Concat 拼接函数
+</span><span class="c1"></span><span class="k">select</span> <span class="n">Concat</span><span class="p">(</span><span class="n">vend_name</span><span class="p">,</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="n">vend_country</span><span class="p">,</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span> <span class="k">from</span> <span class="n">vendors</span> <span class="k">order</span> <span class="k">by</span> <span class="n">vend_name</span><span class="p">;</span>
+<span class="c1">-- | ACME (USA) |
+</span></code></pre></td></tr></table>
+</div>
+</div><p>上面输出的字段名如果不换一个字段名是很傻的，
+使用 别名(<code>alias</code>) 可以使新的字段名变得简洁:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">Concat</span><span class="p">(</span><span class="n">vend_name</span><span class="p">,</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="n">vend_country</span><span class="p">,</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vend_tilte</span> <span class="k">from</span> <span class="n">vendors</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>除此之外，使用 <code>Rtrim/Ltrim</code> 或 <code>Trim</code> 函数可以去除字段右/左或两边的空格，使用四则运算可以得到一个新的计算字段.</p>
+<h3 id="trick-7-使用数据处理函数">TRICK 7 使用数据处理函数</h3>
+<p>常用的有字符、日期和时间和数值处理函数。
+日期和时间函数需要刻意练习一下：</p>
+<p>| 函数 | 说明 |
+|:—:|:—:|
+|Date() |返回时间戳的日期部分|
+|Day() |返回日期的天数部分|
+|Now() |返回当前日期时间 |</p>
+<p>数值处理函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">函数	说明
+Abs()	绝对值
+Cos()	余弦值
+Pi()	圆周率
+Rand()	随机数
+Sqrt()	平方根
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="trick-8-聚集函数汇总数据">TRICK 8 聚集函数汇总数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">函数	说明
+AVG()	返回某一列的平均值
+COUNT()	返回某一列的行数
+MAX()	返回某列的最大值
+MIN()	返回某列的最小值
+SUM()	返回某列之和
+</code></pre></td></tr></table>
+</div>
+</div><p>在使用上述函数的时候，可以通过where字句调整需要汇总的数据
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="k">MAX</span><span class="p">(</span><span class="n">price</span><span class="p">)</span> <span class="k">as</span> <span class="n">max_price</span> <span class="k">from</span> <span class="n">products</span> <span class="k">where</span> <span class="k">class</span> <span class="o">=</span> <span class="s1">&#39;ITBook&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>汇总数据的时候，默认是汇总所有的数据（默认使用关键字 <code>ALL</code> ），包括重复值，使用 <code>DISTINCT</code> 关键字可以排除重复值，对于重复的值只计算汇总一次，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="k">MAX</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">price</span><span class="p">)</span> <span class="k">as</span> <span class="n">max_prince</span> <span class="k">from</span> <span class="n">products</span> <span class="k">where</span> <span class="k">class</span> <span class="o">=</span> <span class="s1">&#39;ITBook&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>DISTINCT</code> 在 <code>count(*)</code> 函数中使用没有意义，使用将报错</p>
+<p>在 <code>MIN()</code>/<code>MAX()</code> 函数中可以使用，但最大最小值只有一个，使用也没有意义</p>
+<h3 id="trick-9-使用分组">TRICK 9 使用分组</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">num</span> <span class="k">from</span> <span class="n">products</span> <span class="k">group</span> <span class="k">by</span> <span class="n">id</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">id	num
+1001	3
+1002	4
+1003	5
+1004	8
+</code></pre></td></tr></table>
+</div>
+</div><p>注意，如果使用 <code>where</code> 字句，必须让 <code>where</code> 语句放在 <code>group by</code> 字句之前
+过滤分组时，可以使用 <code>HAVING</code> 字句</p>
+<p><code>where</code> 和 <code>having</code> 字句不同之处在于，<code>where</code> 是对行进行过滤（分组前），而 <code>having</code> 时对查询结果（分组后）进行筛选过滤
+例如，要筛选价格超过十块，销量大于2的商品的销量，并且按商品 <code>id</code> 进行分组：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql">
+<span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">num</span> 
+<span class="k">from</span> <span class="n">products</span>
+<span class="k">where</span> <span class="n">price</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">id</span>
+<span class="k">having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>group by</code> 和 <code>order by</code>分组和顺序可以结合使用，区别是，<code>group by</code> 只能对选择的列使用，换句话说，后边参数只能是 <code>select</code> 的列或列表达式
+order by 可以对非选择的列使用，来看一个两者结合使用的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">num</span> 
+<span class="k">from</span> <span class="n">products</span>
+<span class="k">where</span> <span class="n">price</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">id</span>
+<span class="k">having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">2</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>SELECT 子句顺序总结</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">子句	说明	是否必须使用
+select	要返回的列或表达式	是
+from	从中检索数据的表	仅在从表选择数据时使用
+where	行级过滤	否
+group by	分组说明	仅在按组计算聚集时使用
+having	组级过滤	否
+order by	输出顺序排序	否
+limit	要检索的行数	否
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="trick-10-使用子查询">TRICK 10 使用子查询</h3>
+<p>看两个例子。</p>
+<ul>
+<li>有三张表，一张是用户表，存放 <code>uid</code> 和 <code>name</code> ；一张物品表，存放 <code>item_id</code> 和 <code>item_name</code> ；一张购物表，存放 order_id、uid 和 item_id ,现在要查询购买了<code>item_name</code> 为 <code>TNT2</code> 的用户的 name和phone，SQL语句要怎么写呢？</li>
+</ul>
+<blockquote>
+<p>思路：先在item表中检索’TNT’的item_id,再在order表中检索出出购买了’TNT’的uid，再通过uid检索name和phone</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="n">phone</span> 
+<span class="k">from</span> <span class="k">user</span> <span class="k">where</span> <span class="n">uid</span> <span class="k">in</span><span class="p">(</span><span class="k">select</span> <span class="n">uid</span> 
+                      <span class="k">from</span> <span class="k">order</span> <span class="k">where</span> <span class="n">item_id</span> <span class="k">in</span><span class="p">(</span><span class="k">select</span> <span class="n">item_id</span> 
+                                                  <span class="k">from</span> <span class="n">item</span> <span class="k">where</span> <span class="n">item_name</span> <span class="o">=</span> <span class="s1">&#39;TNT&#39;</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>统计 <code>order</code> 表中每个用户的订单总数，该怎么写？</li>
+</ul>
+<blockquote>
+<p>思路：从 <code>user</code> 表中检索用户列表；对于每个用户，统计其在 <code>orders</code> 表中的订单数目，使用 <code>count()</code> 计算属性</p>
+</blockquote>
+<p>我们先来看看单个用户的 SQL 怎么写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">order_num</span>
+<span class="k">from</span> <span class="k">order</span>
+<span class="k">where</span> <span class="n">uid</span> <span class="o">=</span> <span class="mi">1001</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">name</span><span class="p">,</span>
+      <span class="p">(</span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="k">order</span> 
+      <span class="k">where</span> <span class="k">order</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="k">user</span><span class="p">.</span><span class="n">uid</span><span class="p">)</span> <span class="k">as</span> <span class="n">order_num</span>
+<span class="k">from</span> <span class="k">user</span>
+<span class="k">order</span> <span class="k">by</span> <span class="n">name</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这种涉及到外部查询的子查询也叫<strong>相关子查询</strong><code>（</code>correlated subquery`）</p>
+<h3 id="trick-11-使用联结表">TRICK 11 使用联结表</h3>
+<p>如果数据存储在多个表中，怎样用单条 <code>select</code> 语句检索出数据？
+答案是使用联结表。
+但应该注意，因为联结表会创造现实中不存在的“<strong>虚拟表</strong>”，后查询，因此，性能比子查询差。会多耗内存和计算资源。
+能使用子查询的情况下推荐使用子查询。</p>
+<p>等值联结也称为内部链接。</p>
+<blockquote>
+<p>很多场景下，使用”外键”能够实现表与表之间的引用约束，但可能会增加性能消耗，因为使用外键约束会造成每次CURD时都会检索引用是否存在。创建时检测，删除时也检测外键约束。一般中大型的应用是不推荐使用外键的。</p>
+</blockquote>
+<p>trick 10 中查询购买了TNT的用户信息，也能使用联结实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="k">user</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="k">user</span><span class="p">.</span><span class="n">phone</span> 
+<span class="k">from</span> <span class="k">user</span><span class="p">,</span><span class="n">item</span><span class="p">,</span><span class="k">order</span>
+<span class="k">where</span> <span class="k">user</span><span class="p">.</span><span class="n">uid</span> <span class="o">=</span> <span class="k">order</span><span class="p">.</span><span class="n">uid</span> <span class="k">and</span>
+<span class="n">item</span><span class="p">.</span><span class="n">item_id</span> <span class="o">=</span> <span class="k">order</span><span class="p">.</span><span class="n">item_id</span> <span class="k">and</span>
+<span class="n">item</span><span class="p">.</span><span class="n">item_name</span> <span class="o">=</span> <span class="s1">&#39;TNT&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="trick-12-高级联结">TRICK 12 高级联结</h3>
+<h4 id="1表别名实现自联结">1.表别名实现自联结</h4>
+<p>自联结，顾名思义就是一张表，自己和自己连，听起来似乎很扯淡。但思考以下场景：
+现在仓库里某一批名为 <code>DTNTR</code> 的货物有问题，你想找出该批货物供应商供应的其他货物名，但你还不知道该物品的供应商 ID ，应该如何做？
+数据库里只有一张表，货物供应表，该表有：物品 ID,物品名，供应商 ID；
+你可能第一想到的方法是使用子查询，先查找出名为 <code>DTNTR</code> 的物品的供应商ID；然后利用供应商ID查找出所有该供应商提供的物品。
+于是你写了子查询：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">prod_id</span><span class="p">,</span> <span class="n">prod_name</span>
+<span class="k">from</span> <span class="n">products</span>
+<span class="k">where</span> <span class="n">vend_id</span> <span class="o">=</span> <span class="p">(</span><span class="k">select</span> <span class="n">vent_id</span>
+                  <span class="k">from</span> <span class="n">products</span>
+                  <span class="k">where</span> <span class="n">prod_name</span> <span class="o">=</span> <span class="s1">&#39;DTNTR&#39;</span><span class="p">;)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这是一种方法，看起来不错，但是嵌套了一层查询，看起来不简洁，让我们使用自联结实现相同的功能，看看是否简洁一些：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">p1</span><span class="p">.</span><span class="n">prod_id</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">prod_name</span>
+<span class="k">from</span> <span class="n">products</span> <span class="k">as</span> <span class="n">p1</span><span class="p">,</span> <span class="n">products</span> <span class="k">as</span> <span class="n">p2</span>
+<span class="k">where</span> <span class="n">p1</span><span class="p">.</span><span class="n">vend_id</span> <span class="o">=</span> <span class="n">p2</span><span class="p">.</span><span class="n">vend_id</span>
+<span class="k">and</span> <span class="n">p2</span><span class="p">.</span><span class="n">prod_name</span> <span class="o">=</span>  <span class="s1">&#39;DTNTR&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>自联结比查询会快一些</p>
+<h4 id="2自然联结">2.自然联结</h4>
+<p>所谓自然联结，就是联结时一张表表使用通配符*（或其他你想要的列）其他表明确这张表没有出现过的列，排除多次出现</p>
+<h4 id="3外部联结">3.外部联结</h4>
+<p>还是考虑顾客购买商品的场景：</p>
+<p>你希望对每个客户下了多少订单进行计数，包括那些从未下单的客户；
+列出所有产品以及订单数量，包括没有人订购的产品；
+计算平均销售规模，包括那些从未下单的客户；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span><span class="p">,</span> <span class="n">orders</span><span class="p">.</span><span class="n">order_id</span>
+<span class="k">from</span> <span class="n">customers</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> 
+<span class="k">on</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="n">orders</span><span class="p">.</span><span class="n">cust_id</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>该SQL会查询出所有顾客的订单，包括没下单的顾客.</p>
+<p>当我们需要查出所有顾客的订单数量时,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span><span class="p">,</span>
+      <span class="n">customers</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+      <span class="k">count</span><span class="p">(</span><span class="n">orders</span><span class="p">.</span><span class="n">cust_id</span><span class="p">)</span> <span class="k">as</span> <span class="n">num_od</span>
+<span class="k">from</span> <span class="n">customers</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">orders</span> 
+<span class="k">on</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="n">orders</span><span class="p">.</span><span class="n">cust_id</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用内连接查出下了订单的顾客的订单</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span><span class="p">,</span>
+      <span class="n">customers</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+      <span class="k">count</span><span class="p">(</span><span class="n">orders</span><span class="p">.</span><span class="n">cust_id</span><span class="p">)</span> <span class="k">as</span> <span class="n">num_od</span>
+<span class="k">from</span> <span class="n">customers</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">orders</span> 
+<span class="k">on</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span> <span class="o">=</span> <span class="n">orders</span><span class="p">.</span><span class="n">cust_id</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">customers</span><span class="p">.</span><span class="n">cust_id</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>区别是什么呢？
+内连接不会筛选记录为空的行，左外连接会把没有下订单的客户的订单数（0）也能筛选出来.</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">gonix</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-03-05
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">MySQL</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/post/leetcode-76-minimum-window-substring/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">题解 | Leetcode 76 - Minimum Window Substring 最小覆盖子串</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/reading-note/puppy-money-monney/">
+            <span class="next-text nav-default"></span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https:chanhz.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">gonix</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

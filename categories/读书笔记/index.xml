@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>读书笔记 on Gonix&#39;s Blog</title>
+    <link>https:chanhz.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 读书笔记 on Gonix&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 15 May 2019 09:14:32 +0800</lastBuildDate>
+    
+	<atom:link href="https:chanhz.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>他山之石-SMART 目标管理法则</title>
+      <link>https:chanhz.github.io/post/post/smart/</link>
+      <pubDate>Wed, 15 May 2019 09:14:32 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/post/post/smart/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;如果你不知道去往何处，那么你必须多加小心，因为你很可能无法到达那里。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;SMART&lt;/strong&gt; 是为目标实现提供了一个靠谱的方法论，在咨询、个人成长领域被广泛使用。&lt;strong&gt;SMART&lt;/strong&gt; 代表：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Specific: 具体的&lt;/strong&gt; —— 把要实现的目标具体化&lt;/p&gt;
+&lt;p&gt;例如，“我想学习 Kubernetes“ 是不够的，应该更具体化，例如：&amp;ldquo;我想用 Kubernetes 搭建一个容器平台，并利用 Jenkins 和 Gitlab 构建 DevOps CI/CD 流水线&amp;rdquo;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Measurable: 可度量的&lt;/strong&gt; ——完成该目标需要多长时间？&lt;/p&gt;
+&lt;p&gt;用确切的数字去度量实现目标任务需要付出的成本。如果无法度量自己的目标任务，那么它很可能还不够具体。度量你的任务，但是要采取增量的方法。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你不必看清你去往何处（心里清楚就好），不必看清目的地和沿途的一切，只需要看清前面的一两米即可。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Achievable: 可实现的&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个你无法达到的目标不是目标，只是一种疯狂的、吸食灵魂的自我挫败。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Relevant：相关的&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目标真的与你有关吗？你对此有热情吗？是在你掌控之下的事情吗？如果不是，这个目标就是不相关的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Time-boxed：时间可控的&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;虽然是最后一个特性，却可能是最重要的一个。你需要为目标设定一个最后期限，没有期限，目标会逐步衰退，永远被每天紧急的事情所排挤，这样它永远都不会实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于任何目标（减肥、炒老板鱿鱼、征服世界等），你都需要制定一个计划，列出一系列帮助你实现目标的任务(objective)。每个目标都应该具有 &lt;strong&gt;SMART&lt;/strong&gt;  特性。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

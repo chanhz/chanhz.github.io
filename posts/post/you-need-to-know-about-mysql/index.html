@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>MySQL必知必会note | Gonix&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.55.5" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="MySQL必知必会note" />
+<meta property="og:description" content="TRICK 1 LIMIT X OFFSET Y
+
+limit 是限制 SQL 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 OFFSET (游标),例如：
+
+limit 4 offset 3 --意味从行3取4行
+
+
+TRICK 2 使用限制表名
+
+在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列
+
+select b.c from a.b
+
+
+TRICK 3 ORDER BY
+
+应该养成排序的好习惯，order by 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 desc 关键字来指定从 Z-A 的排序" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://chanhz.github.io/posts/post/you-need-to-know-about-mysql/" />
+<meta property="article:published_time" content="2019-03-05T00:02:47&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-05T00:02:47&#43;08:00"/>
+
+<meta itemprop="name" content="MySQL必知必会note">
+<meta itemprop="description" content="TRICK 1 LIMIT X OFFSET Y
+
+limit 是限制 SQL 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 OFFSET (游标),例如：
+
+limit 4 offset 3 --意味从行3取4行
+
+
+TRICK 2 使用限制表名
+
+在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列
+
+select b.c from a.b
+
+
+TRICK 3 ORDER BY
+
+应该养成排序的好习惯，order by 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 desc 关键字来指定从 Z-A 的排序">
+
+
+<meta itemprop="datePublished" content="2019-03-05T00:02:47&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-05T00:02:47&#43;08:00" />
+<meta itemprop="wordCount" content="526">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL必知必会note"/>
+<meta name="twitter:description" content="TRICK 1 LIMIT X OFFSET Y
+
+limit 是限制 SQL 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 OFFSET (游标),例如：
+
+limit 4 offset 3 --意味从行3取4行
+
+
+TRICK 2 使用限制表名
+
+在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列
+
+select b.c from a.b
+
+
+TRICK 3 ORDER BY
+
+应该养成排序的好习惯，order by 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 desc 关键字来指定从 Z-A 的排序"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Gonix&#39;s Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/about/" title="关于 page">
+              关于
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=http://chanhz.github.io/posts/post/you-need-to-know-about-mysql/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=http://chanhz.github.io/posts/post/you-need-to-know-about-mysql/&amp;text=MySQL%e5%bf%85%e7%9f%a5%e5%bf%85%e4%bc%9anote" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://chanhz.github.io/posts/post/you-need-to-know-about-mysql/&amp;title=MySQL%e5%bf%85%e7%9f%a5%e5%bf%85%e4%bc%9anote" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">MySQL必知必会note</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-03-05T00:02:47+08:00">March 5, 2019</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h3 id="trick-1-limit-x-offset-y">TRICK 1 LIMIT X OFFSET Y</h3>
+
+<p><code>limit</code> 是限制 <code>SQL</code> 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 <code>OFFSET</code> (游标),例如：</p>
+
+<pre><code class="language-sql">limit 4 offset 3 --意味从行3取4行
+</code></pre>
+
+<h3 id="trick-2-使用限制表名">TRICK 2 使用限制表名</h3>
+
+<p>在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列</p>
+
+<pre><code class="language-sql">select b.c from a.b
+</code></pre>
+
+<h3 id="trick-3-order-by">TRICK 3 ORDER BY</h3>
+
+<p>应该养成排序的好习惯，<code>order by</code> 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 <code>desc</code> 关键字来指定从 Z-A 的排序</p>
+
+<h3 id="trick-4-检索最值">TRICK 4 检索最值</h3>
+
+<p>使用</p>
+
+<pre><code class="language-sql">order by x limit 1
+</code></pre>
+
+<p>可以检索出最大和最小值</p>
+
+<h3 id="trick-5-正则表达式">TRICK 5 正则表达式</h3>
+
+<p>REGXP 比 like 模糊查询要强大得多，REGXP 使用 <code>^$</code> 作为匹配字串得首尾占位符，.作为任意通配符， <code>\</code> 作为转义字符（REG和MySQL各一个）
+匹配多个实例得方法是使用重复元字符，它们有：<code>*/+/?/{n}/{n,}{n,m}</code></p>
+
+<h3 id="trick-6-创建计算字段">TRICK 6 创建计算字段</h3>
+
+<p>计算字段是指，通过SQL得一些格式化函数，将多个字段拼接或计算成一个业务所需要的字段。
+例如：</p>
+
+<pre><code class="language-sql">-- Concat 拼接函数
+select Concat(vend_name,'(', vend_country, ')') from vendors order by vend_name;
+-- | ACME (USA) |
+</code></pre>
+
+<p>上面输出的字段名如果不换一个字段名是很傻的，
+使用 别名(<code>alias</code>) 可以使新的字段名变得简洁:</p>
+
+<pre><code class="language-sql">select Concat(vend_name,'(', vend_country, ')') as vend_tilte from vendors;
+</code></pre>
+
+<p>除此之外，使用 <code>Rtrim/Ltrim</code> 或 <code>Trim</code> 函数可以去除字段右/左或两边的空格，使用四则运算可以得到一个新的计算字段.</p>
+
+<h3 id="trick-7-使用数据处理函数">TRICK 7 使用数据处理函数</h3>
+
+<p>常用的有字符、日期和时间和数值处理函数。
+日期和时间函数需要刻意练习一下：</p>
+
+<p>| 函数 | 说明 |
+|:—:|:—:|
+|Date() |返回时间戳的日期部分|
+|Day() |返回日期的天数部分|
+|Now() |返回当前日期时间 |</p>
+
+<p>数值处理函数</p>
+
+<pre><code>函数	说明
+Abs()	绝对值
+Cos()	余弦值
+Pi()	圆周率
+Rand()	随机数
+Sqrt()	平方根
+</code></pre>
+
+<h3 id="trick-8-聚集函数汇总数据">TRICK 8 聚集函数汇总数据</h3>
+
+<pre><code>函数	说明
+AVG()	返回某一列的平均值
+COUNT()	返回某一列的行数
+MAX()	返回某列的最大值
+MIN()	返回某列的最小值
+SUM()	返回某列之和
+</code></pre>
+
+<p>在使用上述函数的时候，可以通过where字句调整需要汇总的数据
+例如：</p>
+
+<pre><code class="language-sql">select MAX(price) as max_price from products where class = 'ITBook'
+</code></pre>
+
+<p>汇总数据的时候，默认是汇总所有的数据（默认使用关键字 <code>ALL</code> ），包括重复值，使用 <code>DISTINCT</code> 关键字可以排除重复值，对于重复的值只计算汇总一次，例如：</p>
+
+<pre><code class="language-sql">select MAX(DISTINCT price) as max_prince from products where class = 'ITBook'
+</code></pre>
+
+<p><code>DISTINCT</code> 在 <code>count(*)</code> 函数中使用没有意义，使用将报错</p>
+
+<p>在 <code>MIN()</code>/<code>MAX()</code> 函数中可以使用，但最大最小值只有一个，使用也没有意义</p>
+
+<h3 id="trick-9-使用分组">TRICK 9 使用分组</h3>
+
+<pre><code class="language-sql">select id,count(*) as num from products group by id;
+</code></pre>
+
+<pre><code>id	num
+1001	3
+1002	4
+1003	5
+1004	8
+</code></pre>
+
+<p>注意，如果使用 <code>where</code> 字句，必须让 <code>where</code> 语句放在 <code>group by</code> 字句之前
+过滤分组时，可以使用 <code>HAVING</code> 字句</p>
+
+<p><code>where</code> 和 <code>having</code> 字句不同之处在于，<code>where</code> 是对行进行过滤（分组前），而 <code>having</code> 时对查询结果（分组后）进行筛选过滤
+例如，要筛选价格超过十块，销量大于2的商品的销量，并且按商品 <code>id</code> 进行分组：</p>
+
+<pre><code class="language-sql">
+select id,count(*) as num 
+from products
+where price &gt;= 10
+group by id
+having count(*)&gt;=2;
+</code></pre>
+
+<p><code>group by</code> 和 <code>order by</code>分组和顺序可以结合使用，区别是，<code>group by</code> 只能对选择的列使用，换句话说，后边参数只能是 <code>select</code> 的列或列表达式
+order by 可以对非选择的列使用，来看一个两者结合使用的例子</p>
+
+<pre><code class="language-sql">select id,count(*) as num 
+from products
+where price &gt;= 10
+group by id
+having count(*)&gt;=2
+</code></pre>
+
+<p>SELECT 子句顺序总结</p>
+
+<pre><code>子句	说明	是否必须使用
+select	要返回的列或表达式	是
+from	从中检索数据的表	仅在从表选择数据时使用
+where	行级过滤	否
+group by	分组说明	仅在按组计算聚集时使用
+having	组级过滤	否
+order by	输出顺序排序	否
+limit	要检索的行数	否
+</code></pre>
+
+<h3 id="trick-10-使用子查询">TRICK 10 使用子查询</h3>
+
+<p>看两个例子。</p>
+
+<ul>
+<li>有三张表，一张是用户表，存放 <code>uid</code> 和 <code>name</code> ；一张物品表，存放 <code>item_id</code> 和 <code>item_name</code> ；一张购物表，存放 order_id、uid 和 item_id ,现在要查询购买了<code>item_name</code> 为 <code>TNT2</code> 的用户的 name和phone，SQL语句要怎么写呢？</li>
+</ul>
+
+<blockquote>
+<p>思路：先在item表中检索’TNT’的item_id,再在order表中检索出出购买了’TNT’的uid，再通过uid检索name和phone</p>
+</blockquote>
+
+<pre><code class="language-sql">select name, phone 
+from user where uid in(select uid 
+                      from order where item_id in(select item_id 
+                                                  from item where item_name = 'TNT'));
+</code></pre>
+
+<ul>
+<li>统计 <code>order</code> 表中每个用户的订单总数，该怎么写？</li>
+</ul>
+
+<blockquote>
+<p>思路：从 <code>user</code> 表中检索用户列表；对于每个用户，统计其在 <code>orders</code> 表中的订单数目，使用 <code>count()</code> 计算属性</p>
+</blockquote>
+
+<p>我们先来看看单个用户的 SQL 怎么写：</p>
+
+<pre><code class="language-sql">select count(*) as order_num
+from order
+where uid = 1001
+</code></pre>
+
+<pre><code class="language-sql">select name,
+      (select count(*) from order 
+      where order.id=user.uid) as order_num
+from user
+order by name;
+</code></pre>
+
+<p>这种涉及到外部查询的子查询也叫<strong>相关子查询</strong><code>（</code>correlated subquery`）</p>
+
+<h3 id="trick-11-使用联结表">TRICK 11 使用联结表</h3>
+
+<p>如果数据存储在多个表中，怎样用单条 <code>select</code> 语句检索出数据？
+答案是使用联结表。
+但应该注意，因为联结表会创造现实中不存在的“<strong>虚拟表</strong>”，后查询，因此，性能比子查询差。会多耗内存和计算资源。
+能使用子查询的情况下推荐使用子查询。</p>
+
+<p>等值联结也称为内部链接。</p>
+
+<blockquote>
+<p>很多场景下，使用”外键”能够实现表与表之间的引用约束，但可能会增加性能消耗，因为使用外键约束会造成每次CURD时都会检索引用是否存在。创建时检测，删除时也检测外键约束。一般中大型的应用是不推荐使用外键的。</p>
+</blockquote>
+
+<p>trick 10 中查询购买了TNT的用户信息，也能使用联结实现：</p>
+
+<pre><code class="language-sql">select user.name,user.phone 
+from user,item,order
+where user.uid = order.uid and
+item.item_id = order.item_id and
+item.item_name = 'TNT';
+</code></pre>
+
+<h3 id="trick-12-高级联结">TRICK 12 高级联结</h3>
+
+<h4 id="1-表别名实现自联结">1.表别名实现自联结</h4>
+
+<p>自联结，顾名思义就是一张表，自己和自己连，听起来似乎很扯淡。但思考以下场景：
+现在仓库里某一批名为 <code>DTNTR</code> 的货物有问题，你想找出该批货物供应商供应的其他货物名，但你还不知道该物品的供应商 ID ，应该如何做？
+数据库里只有一张表，货物供应表，该表有：物品 ID,物品名，供应商 ID；
+你可能第一想到的方法是使用子查询，先查找出名为 <code>DTNTR</code> 的物品的供应商ID；然后利用供应商ID查找出所有该供应商提供的物品。
+于是你写了子查询：</p>
+
+<pre><code class="language-sql">select prod_id, prod_name
+from products
+where vend_id = (select vent_id
+                  from products
+                  where prod_name = 'DTNTR';)
+</code></pre>
+
+<p>这是一种方法，看起来不错，但是嵌套了一层查询，看起来不简洁，让我们使用自联结实现相同的功能，看看是否简洁一些：</p>
+
+<pre><code class="language-sql">select p1.prod_id, p1.prod_name
+from products as p1, products as p2
+where p1.vend_id = p2.vend_id
+and p2.prod_name =  'DTNTR';
+</code></pre>
+
+<p>自联结比查询会快一些</p>
+
+<h4 id="2-自然联结">2.自然联结</h4>
+
+<p>所谓自然联结，就是联结时一张表表使用通配符*（或其他你想要的列）其他表明确这张表没有出现过的列，排除多次出现</p>
+
+<h4 id="3-外部联结">3.外部联结</h4>
+
+<p>还是考虑顾客购买商品的场景：</p>
+
+<p>你希望对每个客户下了多少订单进行计数，包括那些从未下单的客户；
+列出所有产品以及订单数量，包括没有人订购的产品；
+计算平均销售规模，包括那些从未下单的客户；</p>
+
+<pre><code class="language-sql">select customers.cust_id, orders.order_id
+from customers LEFT JOIN orders 
+on customers.cust_id = orders.cust_id;
+</code></pre>
+
+<p>该SQL会查询出所有顾客的订单，包括没下单的顾客.</p>
+
+<p>当我们需要查出所有顾客的订单数量时,</p>
+
+<pre><code class="language-sql">select customers.cust_id,
+      customers.name,
+      count(orders.cust_id) as num_od
+from customers LEFT JOIN orders 
+on customers.cust_id = orders.cust_id
+group by customers.cust_id;
+</code></pre>
+
+<p>使用内连接查出下了订单的顾客的订单</p>
+
+<pre><code class="language-sql">select customers.cust_id,
+      customers.name,
+      count(orders.cust_id) as num_od
+from customers INNER JOIN orders 
+on customers.cust_id = orders.cust_id
+group by customers.cust_id;
+</code></pre>
+
+<p>区别是什么呢？
+内连接不会筛选记录为空的行，左外连接会把没有下订单的客户的订单数（0）也能筛选出来.</p><ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/mysql" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">MySQL</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://chanhz.github.io" >
+    &copy;  Gonix's Blog 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

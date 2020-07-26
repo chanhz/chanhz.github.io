@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on Gonix&#39;s Blog</title>
+    <link>https:chanhz.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on Gonix&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 10 May 2019 13:55:21 +0800</lastBuildDate>
+    
+	<atom:link href="https:chanhz.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CentOS离线安装MySQL</title>
+      <link>https:chanhz.github.io/post/post/install-mysql-on-centos-offline/</link>
+      <pubDate>Fri, 10 May 2019 13:55:21 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/post/post/install-mysql-on-centos-offline/</guid>
+      <description>&lt;p&gt;如果你的 CentOS 运行在内网环境访问不了公网，内网环境由没有配置相关的源，那么可以考虑离线安装。&lt;/p&gt;
+&lt;h2 id=&#34;查看-centos-版本&#34;&gt;查看 CentOS 版本&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# cat /etc/centos-release&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;下载rpm&#34;&gt;下载rpm&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/&#34;&gt;repo.mysql.com/yum&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;选择对应的版本下载：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;libs&lt;/li&gt;
+&lt;li&gt;common&lt;/li&gt;
+&lt;li&gt;client&lt;/li&gt;
+&lt;li&gt;server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# yum localinstall mysql-xxxx.rpm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意需要client、server依赖common、libs，因此四个包都需要安装。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL必知必会note</title>
+      <link>https:chanhz.github.io/post/post/you-need-to-know-about-mysql/</link>
+      <pubDate>Tue, 05 Mar 2019 00:02:47 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/post/post/you-need-to-know-about-mysql/</guid>
+      <description>&lt;h3 id=&#34;trick-1-limit-x-offset-y&#34;&gt;TRICK 1 LIMIT X OFFSET Y&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;limit&lt;/code&gt; 是限制 &lt;code&gt;SQL&lt;/code&gt; 执行的结果，一般是后面紧接一个正整数作为参数，但还可以添加一个 &lt;code&gt;OFFSET&lt;/code&gt; (游标),例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;limit&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;offset&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;--意味从行3取4行
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;trick-2-使用限制表名&#34;&gt;TRICK 2 使用限制表名&lt;/h3&gt;
+&lt;p&gt;在SQL语句中，如果有必要，可以指定执行SQL的数据库和表：例如，操作 a 数据库中的 b 表的 c 列&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;trick-3-order-by&#34;&gt;TRICK 3 ORDER BY&lt;/h3&gt;
+&lt;p&gt;应该养成排序的好习惯，&lt;code&gt;order by&lt;/code&gt; 后加列名，检索出的数据按字典序排序。
+可以指定多个列名，执行时会先从第一个列名排序，而后在排序好的结果中，再按第二个列名排序
+可以使用 &lt;code&gt;desc&lt;/code&gt; 关键字来指定从 Z-A 的排序&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

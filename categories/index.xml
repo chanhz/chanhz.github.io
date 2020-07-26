@@ -1,14 +1,96 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Gonix&#39;s Blog</title>
-    <link>http://chanhz.github.io/categories/</link>
+    <link>https:chanhz.github.io/categories/</link>
     <description>Recent content in Categories on Gonix&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <lastBuildDate>Sun, 05 Jul 2020 21:29:01 +0800</lastBuildDate>
     
-	<atom:link href="http://chanhz.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:chanhz.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>k8s</title>
+      <link>https:chanhz.github.io/categories/k8s/</link>
+      <pubDate>Sun, 05 Jul 2020 21:29:01 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Algorithm</title>
+      <link>https:chanhz.github.io/categories/algorithm/</link>
+      <pubDate>Wed, 29 May 2019 15:26:18 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jenkins</title>
+      <link>https:chanhz.github.io/categories/jenkins/</link>
+      <pubDate>Wed, 15 May 2019 17:14:03 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>运维</title>
+      <link>https:chanhz.github.io/categories/%E8%BF%90%E7%BB%B4/</link>
+      <pubDate>Wed, 15 May 2019 17:14:03 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/%E8%BF%90%E7%BB%B4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>读书笔记</title>
+      <link>https:chanhz.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 15 May 2019 09:14:32 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https:chanhz.github.io/categories/kubernetes/</link>
+      <pubDate>Tue, 14 May 2019 10:02:34 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>	Golang</title>
+      <link>https:chanhz.github.io/categories/golang/</link>
+      <pubDate>Mon, 13 May 2019 09:25:37 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>并发</title>
+      <link>https:chanhz.github.io/categories/%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Mon, 13 May 2019 09:25:37 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/%E5%B9%B6%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https:chanhz.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Fri, 10 May 2019 13:55:21 +0800</pubDate>
+      
+      <guid>https:chanhz.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
